@@ -6,19 +6,19 @@ import { addTodo } from '../../redux/actions';
 // id duy nhất
 import {v4 as uuidv4} from 'uuid'
 import { useState } from 'react';
-import { todoListSelector } from '../../redux/selector';
+import { addTodoSelect, todoListFilter, todoListFilterStatus } from '../../redux/selector';
 
 export default function TodoList() {
   const [textTodo,setTexttodo] = useState('')
   const [priority,setPriority]=useState('High')
-  const refInput =useRef();
+  // const refInput =useRef();
 
-  useEffect(()=>{
-      refInput.current.focus();
-  })
+  // useEffect(()=>{
+  //     refInput.current.focus();
+  // })
 
   // lấy tùng dữ liệu trong kho chung
-  const todoList =useSelector(todoListSelector)
+  const todoList =useSelector(todoListFilter)
 
   const dispatch =useDispatch()
 
@@ -38,7 +38,7 @@ export default function TodoList() {
       </Col>
       <Col span={24}>
         <Input.Group style={{ display: 'flex' }} compact>
-          <Input ref={refInput} value={textTodo} onChange={e => setTexttodo(e.target.value)} />
+          <Input  value={textTodo} onChange={e => setTexttodo(e.target.value)} />
           <Select defaultValue="Medium" value={priority} onChange={value=>setPriority(value)}>
             <Select.Option value='High' label='High'>
               <Tag color='red'>High</Tag>

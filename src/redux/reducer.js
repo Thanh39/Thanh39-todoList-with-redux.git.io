@@ -1,40 +1,15 @@
-const initSate ={
-    filters:{
-        search:"",
-        status:'All',
-        priority:[]
-    },
-    todoList:[
-        {
-            id:1,
-            name:'learn redux',
-            completed:false,
-            priority:'Medium'
+import ReducerFilter from "../components/Filters/ReducerFilter";
+import reducerAddtodo from "../components/TodoList/ReduceAddtodo";
+import { combineReducers } from 'redux'
 
-        },
-            {
-                id:2,
-                name:'learn html',
-                completed:true,
-                priority:'High'
 
-            }
-    ]
-}
-const rootReducer =(state=initSate,action)=>{
-        switch(action.type){
-            case 'todoList/addTodo':
-            return {
-                ...state,
-                todoList:[
-                    ...state.todoList,
-                    action.payload
+//{} để truy caaoj vào object filter
+const rootReducer = combineReducers(
+    {
+        filters: ReducerFilter,
+        todoList: reducerAddtodo
+    }
 
-                ]
-            }
-            default:
-              return state;
-        }
-}
+)
 
 export default rootReducer;
